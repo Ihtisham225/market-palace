@@ -477,99 +477,64 @@
 @section('script')
 
 <script>
-if ($("#updateForm").length > 0) {
-    $("#updateForm").validate({
-        rules: {
-            name: {
-            required: true,
+$(document).ready(function (e) {
+    $.ajaxSetup({
+        headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $('#updateForm').submit(function(e) {
+        e.preventDefault();
+        var formData = new FormData(this);
+        $.ajax({
+            type:'POST',
+            url: "{{ route('shop.update', $info->id)}}",
+            data: formData,
+            cache:false,
+            contentType: false,
+            processData: false,
+            success: (data) => {
+            this.reset();
+            $('#data').load(document.URL +  ' #data');
+            Swal.fire({
+                position: "top-right",
+                icon: "success",
+                title: "Record Added Successfully",
+                showConfirmButton: false,
+                timer: 2000
+                });
             },
-            shop_type: {
-            required: true,
-            },
-            email: {
-            required: true,
-            maxlength: 50,
-            email: true,
-            },
-            phone: {
-            required: true,
-            maxlength: 13,
-            },
-            address: {
-            required: true,
-            maxlength: 300
-            },
-        },
-        messages: {
-            name: {
-            required: "Please enter name",
-            maxlength: "Shop name maxlength should be 50 characters long."
-            },
-            shop_type: {
-            required: "Please select shop type",
-            },
-            email: {
-            required: "Please enter valid email",
-            email: "Please enter valid email",
-            maxlength: "The email should less than or equal to 50 characters",
-            },
-            phone: {
-            required: "Please enter valid phone number",
-            maxlength: "The phone should less than or equal to 13 characters",
-            },
-            address: {
-            required: "Please select shop type",
-            maxlength: "Your address maxlength should be 300 characters long",
-            },
-        },
-        submitHandler: function(form) {
-            $.ajaxSetup({
-                headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            $('#submit').html('Please Wait...');
-            $("#submit"). attr("disabled", true);
-            $.ajax({
-                url: "{{route('shop.update', $info->id)}}",
-                type: "POST",
-                data: $('#updateForm').serialize(),
-                    success: function( response ) {
-                    $('#submit').html('Submit');
-                    $("#submit"). attr("disabled", false);
-                    document.getElementById("updateForm").reset();
-                    Swal.fire({
+            error: function(data){
+                Swal.fire({
                     position: "top-right",
-                    icon: "success",
-                    title: "Record Updated Successfully",
+                    icon: "error",
+                    title: "Record Not Added",
                     showConfirmButton: false,
                     timer: 2000
-                    });
-                }
-            });
-            $('#data').load(document.URL +  ' #data');
-        }
-    })
-}
+                });
+            }
+        });
+    });
+});
 
 
 
-    function switchStatus()
+function switchStatus()
+{
+    let status = document.getElementById('status_switch').value;
+    if(status == 1)
     {
-        let status = document.getElementById('status_switch').value;
-        if(status == 1)
-        {
-            document.getElementById('status_switch').value = 0;
-            document.getElementById('status_switch').removeAttribute('checked');
-            document.getElementById('status').innerHTML = 'Inactive';
-        }
-        else if(status == 0)
-        {
-            document.getElementById('status_switch').value = 1;
-            document.getElementById('status_switch').setAttribute('checked', 'checked');
-            document.getElementById('status').innerHTML = 'Active';
-        }
+        document.getElementById('status_switch').value = 0;
+        document.getElementById('status_switch').removeAttribute('checked');
+        document.getElementById('status').innerHTML = 'Inactive';
     }
+    else if(status == 0)
+    {
+        document.getElementById('status_switch').value = 1;
+        document.getElementById('status_switch').setAttribute('checked', 'checked');
+        document.getElementById('status').innerHTML = 'Active';
+    }
+}
 </script>
 
 @endsection

@@ -65,7 +65,6 @@ class ShopController extends Controller
     //save record
     public function save_record(ShopRequest $request)
     {
-        dd($request->file('avatar'));
         $info = new Shop();
         $info->name = $request->name;
         $info->user_id = auth()->user()->id;

@@ -355,82 +355,47 @@ License: For each use you must have a valid license purchased only from above li
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
 		<!--end::Ajax-->
 
-        {{-- <script>
-            if ($("#saveForm").length > 0) {
-                $("#saveForm").validate({
-                    rules: {
-                        name: {
-                        required: true,
+        <script>
+            $(document).ready(function (e) {
+                $.ajaxSetup({
+                    headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $('#saveForm').submit(function(e) {
+                    e.preventDefault();
+                    var formData = new FormData(this);
+                    $.ajax({
+                        type:'POST',
+                        url: "{{ route('shop.save')}}",
+                        data: formData,
+                        cache:false,
+                        contentType: false,
+                        processData: false,
+                        success: (data) => {
+                        this.reset();
+                        $('#table').load(document.URL +  ' #table');
+                        Swal.fire({
+                            position: "top-right",
+                            icon: "success",
+                            title: "Record Added Successfully",
+                            showConfirmButton: false,
+                            timer: 2000
+                            });
                         },
-                        shop_type: {
-                        required: true,
-                        },
-                        email: {
-                        required: true,
-                        maxlength: 50,
-                        email: true,
-                        },
-                        phone: {
-                        required: true,
-                        maxlength: 13,
-                        },
-                        address: {
-                        required: true,
-                        maxlength: 300
-                        },
-                    },
-                    messages: {
-                        name: {
-                        required: "Please enter name",
-                        maxlength: "Shop name maxlength should be 50 characters long."
-                        },
-                        shop_type: {
-                        required: "Please select shop type",
-                        },
-                        email: {
-                        required: "Please enter valid email",
-                        email: "Please enter valid email",
-                        maxlength: "The email should less than or equal to 50 characters",
-                        },
-                        phone: {
-                        required: "Please enter valid phone number",
-                        maxlength: "The phone should less than or equal to 13 characters",
-                        },
-                        address: {
-                        required: "Please select shop type",
-                        maxlength: "Your address maxlength should be 300 characters long",
-                        },
-                    },
-                    submitHandler: function(form) {
-                        $.ajaxSetup({
-                            headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                            }
-                        });
-                        $('#submit').html('Please Wait...');
-                        $("#submit"). attr("disabled", true);
-                        $.ajax({
-                            url: "{{route('shop.save')}}",
-                            type: "POST",
-                            data: $('#saveForm').serialize(),
-                                success: function( response ) {
-                                $('#submit').html('Submit');
-                                $("#submit"). attr("disabled", false);
-                                document.getElementById("saveForm").reset();
-                                Swal.fire({
+                        error: function(data){
+                            Swal.fire({
                                 position: "top-right",
-                                icon: "success",
-                                title: "Record Added Successfully",
+                                icon: "error",
+                                title: "Record Not Added",
                                 showConfirmButton: false,
                                 timer: 2000
-                                });
-                            }
-                        });
-                        $('#data').load(document.URL +  ' #data');
-                    }
-                })
-            }
-        </script> --}}
+                            });
+                        }
+                    });
+                });
+            });
+        </script>
 		<!--end::Javascript-->
 
 	</body>

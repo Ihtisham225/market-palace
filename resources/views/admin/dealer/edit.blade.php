@@ -8,7 +8,7 @@
         <!--begin::Page title-->
         <div class="page-title d-flex flex-column align-items-start me-3 gap-2">
             <!--begin::Title-->
-            <h1 class="d-flex text-dark fw-bolder m-0 fs-3">Salemans</h1>
+            <h1 class="d-flex text-dark fw-bolder m-0 fs-3">Dealers</h1>
             <!--end::Title-->
             <!--begin::Breadcrumb-->
             <ul class="breadcrumb breadcrumb-dot fw-bold text-gray-600 fs-7">
@@ -19,7 +19,7 @@
                 <!--end::Item-->
                 <!--begin::Item-->
                 <li class="breadcrumb-item text-gray-600">
-                    <a href="{{ route('salemans') }}" class="text-gray-600 text-hover-primary">Salemans</a>
+                    <a href="{{ route('dealers') }}" class="text-gray-600 text-hover-primary">Dealers</a>
                 </li>
                 <!--end::Item-->
                 <!--begin::Item-->
@@ -72,7 +72,7 @@
                         <!--begin::Heading-->
                         <div class="mb-13 text-center">
                             <!--begin::Title-->
-                            <h1 class="mb-3">Edit Saleman</h1>
+                            <h1 class="mb-3">Edit Dealer</h1>
                             <!--end::Title-->
                             <!--begin::Description-->
                             <div class="text-muted fw-bold fs-5">Please carefully complete all the fields
@@ -88,11 +88,11 @@
                             <div class="col-md-6 fv-row">
                                 <!--begin::Label-->
                                 <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-                                    <span class="required">Saleman Name</span>
-                                    <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Specify a saleman name for future usage and reference"></i>
+                                    <span class="required">Dealer Name</span>
+                                    <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Specify a dealer name for future usage and reference"></i>
                                 </label>
                                 <!--end::Label-->
-                                <input type="text" class="form-control form-control-solid" placeholder="Enter Saleman Name" name="name" id="name" value="{{ $info->name }}" />
+                                <input type="text" class="form-control form-control-solid" placeholder="Enter Dealer Name" name="name" id="name" value="{{ $info->name }}" />
                             </div>
                             <!--end::Col-->
 
@@ -100,10 +100,10 @@
                             <div class="col-md-6 fv-row">
                                 <label class="d-flex align-items-center fs-6 fw-bold mb-2">
                                     <span class="required">Phone</span>
-                                    <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Specify a saleman phone for future usage and reference"></i>
+                                    <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Specify a dealer phone for future usage and reference"></i>
                                 </label>
                                 <!--end::Label-->
-                                <input type="text" class="form-control form-control-solid" placeholder="Enter Saleman Phone" name="phone" id="phone" value="{{ $info->phone }}" />
+                                <input type="text" class="form-control form-control-solid" placeholder="Enter Dealer Phone" name="phone" id="phone" value="{{ $info->phone }}" />
                             </div>
                             <!--end::Col-->
                         </div>
@@ -124,7 +124,7 @@
                             <div class="col-md-6 fv-row">
                                 <div class="d-flex flex-column mb-8">
                                     <label class="fs-6 fw-bold mb-2">Address</label>
-                                    <textarea class="form-control form-control-solid" rows="3" name="address" placeholder="Type Saleman Address" id="address">{{ $info->address }}</textarea>
+                                    <textarea class="form-control form-control-solid" rows="3" name="address" placeholder="Type Dealer Address" id="address">{{ $info->address }}</textarea>
                                 </div>
                             </div>
                             <!--end::Col-->
@@ -132,7 +132,7 @@
                         <!--begin::Input group-->
                         <!--begin::Actions-->
                         <div class="text-center">
-                            <a href="{{ route('salemans') }}" class="btn btn-light me-3">Cancel</a>
+                            <a href="{{ route('dealers') }}" class="btn btn-light me-3">Cancel</a>
                             <button type="submit" id="submit" class="btn btn-primary">Submit</button>
                         </div>
                         <!--end::Actions-->
@@ -174,7 +174,7 @@ if ($("#updateForm").length > 0) {
             maxlength: "The phone should less than or equal to 13 characters",
             },
             address: {
-            required: "Please type saleman address",
+            required: "Please type dealers address",
             maxlength: "Your address maxlength should be 300 characters long",
             },
         },
@@ -187,7 +187,7 @@ if ($("#updateForm").length > 0) {
             $('#submit').html('Please Wait...');
             $("#submit"). attr("disabled", true);
             $.ajax({
-                url: "{{route('saleman.update', $info->id)}}",
+                url: "{{route('dealer.update', $info->id)}}",
                 type: "POST",
                 data: $('#updateForm').serialize(),
                     success: function( response ) {

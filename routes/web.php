@@ -245,6 +245,70 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
       * ***************************
       */
 
+      
+
+
+
+      /*****************************
+     * Customers Routes Starts
+     * ***************************
+     */
+
+    Route::controller(App\Http\Controllers\Admin\CustomerController::class)->group(function () {
+        Route::get('/customers', 'index')->name('customers');
+        Route::get('/add-customer', 'add_record')->name('customer.add');
+        Route::post('/save-customer', 'save_record')->name('customer.save');
+        Route::get('/edit-customer/{id}', 'edit_record')->name('customer.edit');
+        Route::put('/update-customer/{id}', 'update_record')->name('customer.update');
+        Route::delete('/delete-customer/{id}', 'delete_record')->name('customer.delete');
+        Route::get('/trashed-customers', 'trashed_records')->name('customer.trashed');
+        Route::delete('/delete-customer-permanent/{id}', 'delete_record_permanent')->name('customer.delete.permanent');
+        Route::put('/restore-customer/{id}', 'restore_record')->name('customer.restore');
+
+        //Search and filters
+        Route::post('/search-customer', 'search_record')->name('customer.search');
+        Route::post('/customer-status', 'filter_status')->name('customer.status');
+    });
+ 
+ 
+ 
+     /*****************************
+      * Customers Routes Ends
+      * ***************************
+      */
+
+
+
+
+
+      /*****************************
+     * Dealers Routes Starts
+     * ***************************
+     */
+
+    Route::controller(App\Http\Controllers\Admin\DealerController::class)->group(function () {
+        Route::get('/dealers', 'index')->name('dealers');
+        Route::get('/add-dealer', 'add_record')->name('dealer.add');
+        Route::post('/save-dealer', 'save_record')->name('dealer.save');
+        Route::get('/edit-dealer/{id}', 'edit_record')->name('dealer.edit');
+        Route::put('/update-dealer/{id}', 'update_record')->name('dealer.update');
+        Route::delete('/delete-dealer/{id}', 'delete_record')->name('dealer.delete');
+        Route::get('/trashed-dealers', 'trashed_records')->name('dealer.trashed');
+        Route::delete('/delete-dealer-permanent/{id}', 'delete_record_permanent')->name('dealer.delete.permanent');
+        Route::put('/restore-dealer/{id}', 'restore_record')->name('dealer.restore');
+
+        //Search and filters
+        Route::post('/search-dealer', 'search_record')->name('dealer.search');
+        Route::post('/dealer-status', 'filter_status')->name('dealer.status');
+    });
+ 
+ 
+ 
+     /*****************************
+      * Dealers Routes Ends
+      * ***************************
+      */
+
     
 
 
@@ -264,50 +328,6 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
 
     /*****************************
      * Products Routes Ends
-     * ***************************
-     */
-
-
-
-
-    /*****************************
-     * Dealers Routes Starts
-     * ***************************
-     */
-
-
-    Route::get('/dealers', [App\Http\Controllers\DealerController::class, 'index'])->name('dealers');
-    Route::get('/add-dealer', [App\Http\Controllers\DealerController::class, 'add_record'])->name('dealer.add');
-    Route::post('/save-dealer', [App\Http\Controllers\DealerController::class, 'save_record'])->name('dealer.save');
-    Route::get('/edit-dealer/{id}', [App\Http\Controllers\DealerController::class, 'edit_record'])->name('dealer.edit');
-    Route::post('/update-dealer/{id}', [App\Http\Controllers\DealerController::class, 'update_record'])->name('dealer.update');
-    Route::get('/delete-dealer/{id}', [App\Http\Controllers\DealerController::class, 'delete_record'])->name('dealer.delete');
-
-
-    /*****************************
-     * Dealers Routes Ends
-     * ***************************
-     */
-
-
-
-
-    /*****************************
-     * Customers Routes Starts
-     * ***************************
-     */
-
-    Route::get('/customers', [App\Http\Controllers\CustomerController::class, 'index'])->name('customers');
-    Route::get('/add-customer', [App\Http\Controllers\CustomerController::class, 'add_record'])->name('customer.add');
-    Route::post('/save-customer', [App\Http\Controllers\CustomerController::class, 'save_record'])->name('customer.save');
-    Route::get('/edit-customer/{id}', [App\Http\Controllers\CustomerController::class, 'edit_record'])->name('customer.edit');
-    Route::post('/update-customer/{id}', [App\Http\Controllers\CustomerController::class, 'update_record'])->name('customer.update');
-    Route::get('/delete-customer/{id}', [App\Http\Controllers\CustomerController::class, 'delete_record'])->name('customer.delete');
-
-
-
-    /*****************************
-     * Customers Routes Ends
      * ***************************
      */
 

@@ -30,4 +30,18 @@ class Shop extends Model
     {
         return $this->hasMany(Saleman::class, 'shop_id');
     }
+
+
+    //has one to many relationship with customers table
+    public function customer()
+    {
+        return $this->hasMany(Customer::class, 'shop_id');
+    }
+
+
+    //has one to many relationship with dealers table
+    public function dealer()
+    {
+        return $this->hasMany(Dealer::class, 'shop_id');
+    }
 }

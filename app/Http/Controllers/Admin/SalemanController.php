@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SalemanRequest;
 use App\Models\Saleman;
-use App\Models\Shop;
 
 class SalemanController extends Controller
 {
@@ -17,8 +16,7 @@ class SalemanController extends Controller
         $total = count($rows);
         $total_active = count($rows->where('status', 1));
         $total_inactive = count($rows->where('status', 0));
-        $shops = Shop::where('user_id', auth()->user()->id)->where('status', '1')->get();
-        $title = "Shops";
+        $title = "Salemans";
         $badge = "all";
 
         return view('admin.saleman.index', [
@@ -26,7 +24,6 @@ class SalemanController extends Controller
             'total' => $total,
             'active' => $total_active,
             'inactive' => $total_inactive,
-            'shop' => $shops,
             'title' => $title,
             'badge' => $badge,
         ]);
@@ -37,11 +34,9 @@ class SalemanController extends Controller
     {
        
         $title = "Add Saleman";
-        $shops = Shop::where('user_id', auth()->user()->id)->where('status', '1')->get();
 
         return view('admin.saleman.add', [
             'title' => $title,
-            'shops' => $shops
         ]);
     }
 
@@ -69,11 +64,9 @@ class SalemanController extends Controller
     public function edit_record($id)
     {
         $info = Saleman::find($id);
-        $shops = Shop::where('user_id', auth()->user()->id)->where('status', '1')->get();
         $title = "Edit Saleman";
         return view('admin.saleman.edit', [
             'info' => $info, 
-            'shops' => $shops,
             'title' => $title,
         ]);
     }

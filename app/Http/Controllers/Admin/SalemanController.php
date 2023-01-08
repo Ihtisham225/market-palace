@@ -53,7 +53,7 @@ class SalemanController extends Controller
         $info->name = $request->name;
         $info->phone = $request->phone;
         $info->address = $request->address;
-        $info->shop_id = $request->shop;
+        $info->shop_id = session()->get('shop_id');
         $info->status = 1;
 
         
@@ -87,7 +87,7 @@ class SalemanController extends Controller
         $info->name = $request->name;
         $info->phone = $request->phone;
         $info->address = $request->address;
-        $info->shop_id = $request->shop;
+        $info->shop_id = session()->get('shop_id');
         if($request->status == null)
             $info->status = 0;
         else
@@ -116,16 +116,14 @@ class SalemanController extends Controller
     //show deleted records
     public function trashed_records()
     {
-        $rows = Saleman::onlyTrashed()->where('user_id', auth()->user()->id)->latest()->paginate(10);
-        $total = count(Shop::withTrashed()->where('deleted_at', '!=', null)->where('user_id', auth()->user()->id)->get());
-        $shops = Shop::where('user_id', auth()->user()->id)->where('status', '1')->get();
+        $rows = Saleman::onlyTrashed()->where('shop_id', session()->get('shop_id'))->latest()->paginate(10);
+        $total = count(Saleman::withTrashed()->where('deleted_at', '!=', null)->where('shop_id', session()->get('shop_id'))->get());
         $title = "Salamans";
         $badge = "trashed";
 
         return view('admin.saleman.trashed', [
             'rows' => $rows,
             'total' => $total,
-            'shops' => $shops,
             'title' => $title,
             'badge' => $badge,
         ]);
@@ -170,7 +168,7 @@ class SalemanController extends Controller
     public function search_record(Request $request)
     {
 
-        $rows = Saleman::where('name', 'LIKE', "%{$request->search}%")->where('user_id', auth()->user()->id)->latest()->paginate(10);
+        $rows = Saleman::where('name', 'LIKE', "%{$request->search}%")->where('shop_id', 'shop_id', session()->get('shop_id'))->latest()->paginate(10);
 
         $total = count($rows);
         $total_active = count($rows->where('status', 1));
@@ -178,7 +176,7 @@ class SalemanController extends Controller
 
         $title = "Salamans";
         $badge = "all";
-        $shops = Shop::where('user_id', auth()->user()->id)->where('status', '1')->get();
+        $shops = Saleman::where('shop_id', 'shop_id', session()->get('shop_id'))->where('status', '1')->get();
 
         return view('admin.saleman.index', [
             'rows' => $rows,
@@ -197,7 +195,7 @@ class SalemanController extends Controller
     {
         if($request->status == 1)
         {
-            $rows = Shop::where('user_id', auth()->user()->id)->where('status', 1)->latest()->paginate(10);
+            $rows = Saleman::where('shop_id', session()->get('shop_id'))->where('status', 1)->latest()->paginate(10);
             $title = "Salemans | Active";
             $badge = "Active";
 
@@ -207,7 +205,7 @@ class SalemanController extends Controller
         }
         else
         {
-            $rows = Shop::where('user_id', auth()->user()->id)->where('status', 0)->latest()->paginate(10);
+            $rows = Saleman::where('shop_id', 'shop_id', session()->get('shop_id'))->where('status', 0)->latest()->paginate(10);
             $title = "Salamans | Inactive";
             $badge = "Inactive";
 
@@ -216,7 +214,7 @@ class SalemanController extends Controller
             $total_inactive = count($rows->where('status', 0));
         }
 
-        $shops = Shop::where('user_id', auth()->user()->id)->where('status', '1')->get();
+        $shops = Saleman::where('shop_id', 'shop_id', session()->get('shop_id'))->where('status', '1')->get();
 
         return view('admin.saleman.index', [
             'title' => $title,

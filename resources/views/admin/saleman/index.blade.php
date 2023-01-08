@@ -9,7 +9,7 @@
         <!--begin::Page title-->
         <div class="page-title d-flex flex-column align-items-start me-3 gap-2">
             <!--begin::Title-->
-            <h1 class="d-flex text-dark fw-bolder m-0 fs-3">Shops</h1>
+            <h1 class="d-flex text-dark fw-bolder m-0 fs-3">Salemans</h1>
             <!--end::Title-->
             <!--begin::Breadcrumb-->
             <ul class="breadcrumb breadcrumb-dot fw-bold text-gray-600 fs-7">
@@ -20,7 +20,7 @@
                 <!--end::Item-->
                 <!--begin::Item-->
                 <li class="breadcrumb-item text-gray-600">
-                    <a href="{{ route('shops') }}" class="text-gray-600 text-hover-primary">Shops</a>
+                    <a href="{{ route('salemans') }}" class="text-gray-600 text-hover-primary">Salemans</a>
                 </li>
                 <!--end::Item-->
                 <!--begin::Item-->
@@ -86,11 +86,11 @@
     <!--begin::Post-->
     <div class="content flex-row-fluid" id="kt_content">
         <!--begin::Tables Widget 10-->
-        <div class="card mb-5 mb-xl-8 mt-8">
+        <div class="card mb-5 mb-xl-8 mt-8"  id="table">
             <!--begin::Header-->
             <div class="card-header border-0 pt-5">
                 <h3 class="card-title align-items-start flex-column">
-                    <span class="card-label fw-bolder fs-3 mb-1">Shops</span>
+                    <span class="card-label fw-bolder fs-3 mb-1">Salemans</span>
                     {{-- <span class="text-muted mt-1 fw-bold fs-7">Over 500 new products</span> --}}
                 </h3>
                 <div class="card-toolbar">
@@ -98,7 +98,7 @@
                     <!--begin::search-->
                     <div class="content flex-row-fluid" id="kt_content">
                         <!--begin::Form-->
-                        <form action="{{ route('shop.search') }}" method="POST">
+                        <form action="{{ route('saleman.search') }}" method="POST">
                             @csrf
                             <!--begin::Card-->
                             <div class="card mb-7">
@@ -143,23 +143,16 @@
                             <rect x="4.36396" y="11.364" width="16" height="2" rx="1" fill="black" />
                         </svg>
                     </span>
-                    <!--end::Svg Icon-->Add Shop</a>
+                    <!--end::Svg Icon-->Add Saleman</a>
 
                     <!--begin::Menu item-->
                     <div class="menu-item px-3">
-                        <a href="{{ route('shop.trashed') }}" class="btn btn-sm btn-light-danger">View Trashed</a>
+                        <a href="{{ route('saleman.trashed') }}" class="btn btn-sm btn-light-danger">View Trashed</a>
                     </div>
                     <!--end::Menu item-->
                     <!--begin::Menu separator-->
                     <div class="separator mt-3 opacity-75"></div>
                     <!--end::Menu separator-->
-                    <!--begin::Menu item-->
-                    <div class="menu-item px-3">
-                        <div class="menu-content px-3 py-3">
-                            <a class="btn btn-primary btn-sm px-4" href="{{ route('shop.generate_report') }}">Generate Reports</a>
-                        </div>
-                    </div>
-                    <!--end::Menu item-->
 
                     <!--begin::Menu-->
                     <button type="button" class="btn btn-sm btn-icon btn-color-primary btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
@@ -187,7 +180,7 @@
                         <div class="separator border-gray-200"></div>
                         <!--end::Menu separator-->
                         <!--begin::Form-->
-                        <form method="POST" action="{{ route('shop.status') }}">
+                        <form method="POST" action="{{ route('saleman.status') }}">
                             @csrf
                             <div class="px-7 py-5">
                                 <!--begin::Input group-->
@@ -204,42 +197,6 @@
                                         </select>
                                     </div>
                                     <!--end::Input-->
-                                </div>
-                                <!--end::Input group-->
-                                <!--begin::Input group-->
-                                <div class="mb-10">
-                                    <!--begin::Label-->
-                                    <label class="form-label fw-bold">Member Type:</label>
-                                    <!--end::Label-->
-                                    <!--begin::Options-->
-                                    <div class="d-flex">
-                                        <!--begin::Options-->
-                                        <label class="form-check form-check-sm form-check-custom form-check-solid me-5">
-                                            <input class="form-check-input" type="checkbox" value="1" />
-                                            <span class="form-check-label">Author</span>
-                                        </label>
-                                        <!--end::Options-->
-                                        <!--begin::Options-->
-                                        <label class="form-check form-check-sm form-check-custom form-check-solid">
-                                            <input class="form-check-input" type="checkbox" value="2" checked="checked" />
-                                            <span class="form-check-label">Customer</span>
-                                        </label>
-                                        <!--end::Options-->
-                                    </div>
-                                    <!--end::Options-->
-                                </div>
-                                <!--end::Input group-->
-                                <!--begin::Input group-->
-                                <div class="mb-10">
-                                    <!--begin::Label-->
-                                    <label class="form-label fw-bold">Notifications:</label>
-                                    <!--end::Label-->
-                                    <!--begin::Switch-->
-                                    <div class="form-check form-switch form-switch-sm form-check-custom form-check-solid">
-                                        <input class="form-check-input" type="checkbox" value="" name="notifications" checked="checked" />
-                                        <label class="form-check-label">Enabled</label>
-                                    </div>
-                                    <!--end::Switch-->
                                 </div>
                                 <!--end::Input group-->
                                 <!--begin::Actions-->
@@ -263,13 +220,13 @@
                 @if(count($rows) > 0)
                 <div class="table-responsive">
                     <!--begin::Table-->
-                    <table class="table align-middle gs-0 gy-4" id="table">
+                    <table class="table align-middle gs-0 gy-4">
                         <!--begin::Table head-->
                         <thead>
                             <tr class="fw-bolder text-muted bg-light">
                                 <th class="ps-4 min-w-325px rounded-start">Name</th>
                                 <th class="min-w-200px">Phone</th>
-                                <th class="min-w-200px">Email</th>
+                                <th class="min-w-200px">Address</th>
                                 <th class="min-w-150px">Status</th>
                                 <th class="min-w-200px text-end rounded-end"></th>
                             </tr>
@@ -282,11 +239,10 @@
                                 <td>
                                     <div class="d-flex align-items-center">
                                         <div class="symbol symbol-50px me-5">
-                                            <img src="{{ '/assets/media/images/shops/'.$row->image }}" class="" alt="" />
                                         </div>
                                         <div class="d-flex justify-content-start flex-column">
                                             <a href="#" class="text-dark fw-bolder text-hover-primary mb-1 fs-6">{{ $row->name }}</a>
-                                            <span class="text-muted fw-bold text-muted d-block fs-7">Type: {{ $row->shop_type->title }}</span>
+                                            <span class="text-muted fw-bold text-muted d-block fs-7">Shop: {{ $row->shop->name }}</span>
                                         </div>
                                     </div>
                                 </td>
@@ -295,25 +251,14 @@
                                     <span class="text-muted fw-bold text-muted d-block fs-7">Country: Pakistan</span>
                                 </td>
                                 <td>
-                                    <a href="#" class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6">{{ $row->email }}</a>
-                                    <span class="text-muted fw-bold text-muted d-block fs-7">Address: {{ $row->address }}</span>
+                                    <a href="#" class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6">{{ $row->address }}</a>
                                 </td>
                                 </td>
                                 <td>
                                     <span class="badge badge-{{ $row->status == 1 ? 'primary' : 'danger'}} fs-7 fw-bold">{{ $row->status == 1 ? 'Active' : 'Inactive' }}</span>
                                 </td>
                                 <td class="text-end">
-                                    <a href="{{ route('shop.detail', $row->id) }}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
-                                        <!--begin::Svg Icon | path: icons/duotune/general/gen019.svg-->
-                                        <span class="svg-icon svg-icon-3">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                <path d="M17.5 11H6.5C4 11 2 9 2 6.5C2 4 4 2 6.5 2H17.5C20 2 22 4 22 6.5C22 9 20 11 17.5 11ZM15 6.5C15 7.9 16.1 9 17.5 9C18.9 9 20 7.9 20 6.5C20 5.1 18.9 4 17.5 4C16.1 4 15 5.1 15 6.5Z" fill="black" />
-                                                <path opacity="0.3" d="M17.5 22H6.5C4 22 2 20 2 17.5C2 15 4 13 6.5 13H17.5C20 13 22 15 22 17.5C22 20 20 22 17.5 22ZM4 17.5C4 18.9 5.1 20 6.5 20C7.9 20 9 18.9 9 17.5C9 16.1 7.9 15 6.5 15C5.1 15 4 16.1 4 17.5Z" fill="black" />
-                                            </svg>
-                                        </span>
-                                        <!--end::Svg Icon-->
-                                    </a>
-                                    <a href="{{ route('shop.edit', $row->id) }}" class="btn btn-icon btn-bg-light btn-active-color-warning btn-sm me-1">
+                                    <a href="{{ route('saleman.edit', $row->id) }}" class="btn btn-icon btn-bg-light btn-active-color-warning btn-sm me-1">
                                         <!--begin::Svg Icon | path: icons/duotune/art/art005.svg-->
                                         <span class="svg-icon svg-icon-3">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -323,7 +268,7 @@
                                         </span>
                                         <!--end::Svg Icon-->
                                     </a>
-                                    <form style="display:inline;" action="{{ route('shop.delete', $row->id) }}" method="POST" class="delete_record">
+                                    <form style="display:inline;" action="{{ route('saleman.delete', $row->id) }}" method="POST" class="delete_record">
                                         @csrf
                                         @method('DELETE')
                                         <button class="btn btn-icon btn-bg-light btn-active-color-danger btn-sm">
@@ -348,7 +293,7 @@
                     {{ $rows->links() }}
                 </div>
                 @else
-                <h3 style="text-align: center;">No Shops Found</h3>
+                <h3 style="text-align: center;">No Salemans Found</h3>
                 @endif
                 <!--end::Table container-->
             </div>
@@ -388,7 +333,7 @@
                     <!--begin::Heading-->
                     <div class="mb-13 text-center">
                         <!--begin::Title-->
-                        <h1 class="mb-3">Add New Shop</h1>
+                        <h1 class="mb-3">Add New Saleman</h1>
                         <!--end::Title-->
                         <!--begin::Description-->
                         <div class="text-muted fw-bold fs-5">Please carefully complete all the fields
@@ -400,93 +345,36 @@
                     <!--begin::Input group-->
                     <div class="row g-9 mb-8">
                         <!--begin::Col-->
-                        <div class="col-md-9 fv-row">
+                        <div class="col-md-6 fv-row">
                             <!--begin::Label-->
                             <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-                                <span class="required">Shop Name</span>
-                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Specify a shop name for future usage and reference"></i>
+                                <span class="required">Saleman Name</span>
+                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Specify a saleman name for future usage and reference"></i>
                             </label>
                             <!--end::Label-->
-                            <input type="text" class="form-control form-control-solid" placeholder="Enter Shop Name" name="name" id="name"/>
+                            <input type="text" class="form-control form-control-solid" placeholder="Enter Saleman Name" name="name" id="name"/>
                         </div>
                         <!--end::Col-->
                         <!--begin::Col-->
-                        <div class="col-md-3 fv-row">
-                            <!--begin::Image input-->
-                            <div class="image-input image-input-outline" data-kt-image-input="true" style="background-image: url('/assets/media/svg/avatars/blank.svg')">
-                                <!--begin::Preview existing avatar-->
-                                <div class="image-input-wrapper w-125px h-125px" style="background-image: url('/assets/media/avatars/shop_default.png')"></div>
-                                <!--end::Preview existing avatar-->
-                                <!--begin::Label-->
-                                <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change avatar">
-                                    <i class="bi bi-pencil-fill fs-7"></i>
-                                    <!--begin::Inputs-->
-                                    <input type="file" name="avatar" accept=".png, .jpg, .jpeg" />
-                                    <input type="hidden" name="avatar_remove" />
-                                    <!--end::Inputs-->
-                                </label>
-                                <!--end::Label-->
-                                <!--begin::Cancel-->
-                                <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" title="Cancel avatar">
-                                    <i class="bi bi-x fs-2"></i>
-                                </span>
-                                <!--end::Cancel-->
-                                <!--begin::Remove-->
-                                <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" title="Remove avatar">
-                                    <i class="bi bi-x fs-2"></i>
-                                </span>
-                                <!--end::Remove-->
-                            </div>
-                            <!--end::Image input-->
-                            <!--begin::Hint-->
-                            <div class="form-text">Allowed file types: png, jpg, jpeg.</div>
-                            <!--end::Hint-->
+                        <div class="col-md-6 fv-row">
+                            <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+                                <span class="required">Phone</span>
+                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Specify a saleman phone for future usage and reference"></i>
+                            </label>
+                            <!--end::Label-->
+                            <input type="text" class="form-control form-control-solid" placeholder="Enter Saleman Phone" name="phone" id="phone"/>
                         </div>
+                        <!--end::Col-->
                     </div>
                     <!--end::Col-->
                     <!--end::Input group-->
                     <!--begin::Input group-->
                     <div class="row g-9 mb-8">
                         <!--begin::Col-->
-                        <div class="col-md-6 fv-row">
-                            <label class="required fs-6 fw-bold mb-2">Shop Type</label>
-                            <select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Select Shop Type" name="shop_type" id="shop_type">
-                                <option value="">Select shop type...</option>
-                                @foreach($shop_types as $type)
-                                <option value="{{ $type->id }}">{{ $type->title }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <!--end::Col-->
-                        <!--begin::Col-->
-                        <div class="col-md-6 fv-row">
-                            <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-                                <span class="required">Email</span>
-                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Specify a shop email for future usage and reference"></i>
-                            </label>
-                            <!--end::Label-->
-                            <input type="email" class="form-control form-control-solid" placeholder="Enter Shop Email" name="email" id="email"/>
-                        </div>
-                        <!--end::Col-->
-                    </div>
-                    <!--end::Input group-->
-                    <!--begin::Input group-->
-                    <div class="row g-9 mb-8">
-                        <!--begin::Col-->
-                        <div class="col-md-6 fv-row">
-                            <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-                                <span class="required">Phone</span>
-                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Specify a shop phone for future usage and reference"></i>
-                            </label>
-                            <!--end::Label-->
-                            <input type="text" class="form-control form-control-solid" placeholder="Enter Shop Phone" name="phone" id="phone"/>
-                        </div>
-                        <!--end::Col-->
-                        <!--begin::Col-->
-                        <div class="col-md-6 fv-row">
+                        <div class="col-md-12 fv-row">
 							<div class="d-flex flex-column mb-8">
 								<label class="fs-6 fw-bold mb-2">Address</label>
-								<textarea class="form-control form-control-solid" rows="3" name="address" placeholder="Type Shop Address" id="address"></textarea>
+								<textarea class="form-control form-control-solid" rows="3" name="address" placeholder="Type Saleman Address" id="address"></textarea>
                             </div>
                         </div>
 						<!--end::Col-->
@@ -519,14 +407,6 @@ if ($("#saveForm").length > 0) {
             name: {
             required: true,
             },
-            shop_type: {
-            required: true,
-            },
-            email: {
-            required: true,
-            maxlength: 50,
-            email: true,
-            },
             phone: {
             required: true,
             maxlength: 13,
@@ -541,20 +421,12 @@ if ($("#saveForm").length > 0) {
             required: "Please enter name",
             maxlength: "Shop name maxlength should be 50 characters long."
             },
-            shop_type: {
-            required: "Please select shop type",
-            },
-            email: {
-            required: "Please enter valid email",
-            email: "Please enter valid email",
-            maxlength: "The email should less than or equal to 50 characters",
-            },
             phone: {
             required: "Please enter valid phone number",
             maxlength: "The phone should less than or equal to 13 characters",
             },
             address: {
-            required: "Please select shop type",
+            required: "Please type salemans address",
             maxlength: "Your address maxlength should be 300 characters long",
             },
         },
@@ -567,7 +439,7 @@ if ($("#saveForm").length > 0) {
             $('#submit').html('Please Wait...');
             $("#submit"). attr("disabled", true);
             $.ajax({
-                url: "{{route('shop.save')}}",
+                url: "{{route('saleman.save')}}",
                 type: "POST",
                 data: $('#saveForm').serialize(),
                     success: function( response ) {

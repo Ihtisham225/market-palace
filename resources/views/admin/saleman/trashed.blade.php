@@ -9,7 +9,7 @@
         <!--begin::Page title-->
         <div class="page-title d-flex flex-column align-items-start me-3 gap-2">
             <!--begin::Title-->
-            <h1 class="d-flex text-dark fw-bolder m-0 fs-3">Trashed Shops</h1>
+            <h1 class="d-flex text-dark fw-bolder m-0 fs-3">Trashed Salemans</h1>
             <!--end::Title-->
             <!--begin::Breadcrumb-->
             <ul class="breadcrumb breadcrumb-dot fw-bold text-gray-600 fs-7">
@@ -20,7 +20,7 @@
                 <!--end::Item-->
                 <!--begin::Item-->
                 <li class="breadcrumb-item text-gray-600">
-                    <a href="{{ route('shops') }}" class="text-gray-600 text-hover-primary">Shops</a>
+                    <a href="{{ route('salemans') }}" class="text-gray-600 text-hover-primary">Salemans</a>
                 </li>
                 <!--end::Item-->
                 <!--begin::Item-->
@@ -75,12 +75,12 @@
             <!--begin::Header-->
             <div class="card-header border-0 pt-5">
                 <h3 class="card-title align-items-start flex-column">
-                    <span class="card-label fw-bolder fs-3 mb-1">Trashed Shops</span>
+                    <span class="card-label fw-bolder fs-3 mb-1">Trashed Salemans</span>
                     {{-- <span class="text-muted mt-1 fw-bold fs-7">Over 500 new products</span> --}}
                 </h3>
                 <div class="card-toolbar">
-                    <a href="{{ route('shops') }}" class="btn btn-sm btn-light-primary">
-                    <!--end::Svg Icon-->Active Shops</a>
+                    <a href="{{ route('salemans') }}" class="btn btn-sm btn-light-primary">
+                    <!--end::Svg Icon-->Salemans</a>
                 </div>
             </div>
             <!--end::Header-->
@@ -96,7 +96,7 @@
                             <tr class="fw-bolder text-muted bg-light">
                                 <th class="ps-4 min-w-325px rounded-start">Name</th>
                                 <th class="min-w-200px">Phone</th>
-                                <th class="min-w-200px">Email</th>
+                                <th class="min-w-200px">Address</th>
                                 <th class="min-w-200px text-end rounded-end"></th>
                             </tr>
                         </thead>
@@ -108,11 +108,10 @@
                                 <td>
                                     <div class="d-flex align-items-center">
                                         <div class="symbol symbol-50px me-5">
-                                            <img src="{{ '/assets/media/images/shops/'.$row->image }}" class="" alt="" />
                                         </div>
                                         <div class="d-flex justify-content-start flex-column">
                                             <a href="#" class="text-dark fw-bolder text-hover-primary mb-1 fs-6">{{ $row->name }}</a>
-                                            <span class="text-muted fw-bold text-muted d-block fs-7">Type: {{ $row->shop_type->title }}</span>
+                                            <span class="text-muted fw-bold text-muted d-block fs-7">Shop: {{ $row->shop->name }}</span>
                                         </div>
                                     </div>
                                 </td>
@@ -121,12 +120,11 @@
                                     <span class="text-muted fw-bold text-muted d-block fs-7">Country: Pakistan</span>
                                 </td>
                                 <td>
-                                    <a href="#" class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6">{{ $row->email }}</a>
-                                    <span class="text-muted fw-bold text-muted d-block fs-7">Address: {{ $row->address }}</span>
+                                    <a href="#" class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6">{{ $row->address }}</a>
                                 </td>
                                 </td>
                                 <td class="text-end">
-                                    <form style="display:inline;" action="{{ route('shop.restore', $row->id) }}" method="POST" class="restore_record">
+                                    <form style="display:inline;" action="{{ route('saleman.restore', $row->id) }}" method="POST" class="restore_record">
                                         @csrf
                                         @method('PUT')
                                         <button class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm">
@@ -139,7 +137,7 @@
                                         </button>
                                     </form>
                                     
-                                    <form style="display:inline;" action="{{ route('shop.delete.permanent', $row->id) }}" method="POST" class="delete_record">
+                                    <form style="display:inline;" action="{{ route('saleman.delete.permanent', $row->id) }}" method="POST" class="delete_record">
                                         @csrf
                                         @method('DELETE')
                                         <button class="btn btn-icon btn-bg-light btn-active-color-danger btn-sm">
@@ -192,7 +190,7 @@ $(".delete_record").click(function(e) {
         if (delete_result.value) {
             Swal.fire(
                 "Deleted!",
-                "Your file has been deleted.",
+                "Your record has been deleted.",
                 "success"
             )
             delete_form.submit();
@@ -214,7 +212,7 @@ $(".restore_record").click(function(f) {
         if (restore_result.value) {
             Swal.fire(
                 "Resotred!",
-                "Your file has been restored.",
+                "Your record has been restored.",
                 "success"
             )
             restore_form.submit();

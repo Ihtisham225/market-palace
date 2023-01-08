@@ -227,7 +227,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
         Route::get('/add-saleman', 'add_record')->name('saleman.add');
         Route::post('/save-saleman', 'save_record')->name('saleman.save');
         Route::get('/edit-saleman/{id}', 'edit_record')->name('saleman.edit');
-        Route::put('/update-saleman/{id}', 'update_record')->name('v.update');
+        Route::put('/update-saleman/{id}', 'update_record')->name('saleman.update');
         Route::delete('/delete-saleman/{id}', 'delete_record')->name('saleman.delete');
         Route::get('/trashed-salemans', 'trashed_records')->name('saleman.trashed');
         Route::delete('/delete-saleman-permanent/{id}', 'delete_record_permanent')->name('saleman.delete.permanent');

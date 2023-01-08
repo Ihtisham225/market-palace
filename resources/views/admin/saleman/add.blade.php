@@ -8,7 +8,7 @@
         <!--begin::Page title-->
         <div class="page-title d-flex flex-column align-items-start me-3 gap-2">
             <!--begin::Title-->
-            <h1 class="d-flex text-dark fw-bolder m-0 fs-3">Shops</h1>
+            <h1 class="d-flex text-dark fw-bolder m-0 fs-3">Salemans</h1>
             <!--end::Title-->
             <!--begin::Breadcrumb-->
             <ul class="breadcrumb breadcrumb-dot fw-bold text-gray-600 fs-7">
@@ -19,7 +19,7 @@
                 <!--end::Item-->
                 <!--begin::Item-->
                 <li class="breadcrumb-item text-gray-600">
-                    <a href="{{ route('shops') }}" class="text-gray-600 text-hover-primary">Shops</a>
+                    <a href="{{ route('salemans') }}" class="text-gray-600 text-hover-primary">Salemans</a>
                 </li>
                 <!--end::Item-->
                 <!--begin::Item-->
@@ -70,7 +70,7 @@
                     <!--begin::Heading-->
                     <div class="mb-13 text-center">
                         <!--begin::Title-->
-                        <h1 class="mb-3">Add New Shop</h1>
+                        <h1 class="mb-3">Add New Saleman</h1>
                         <!--end::Title-->
                         <!--begin::Description-->
                         <div class="text-muted fw-bold fs-5">Please carefully complete all the fields
@@ -83,93 +83,37 @@
                     <!--begin::Input group-->
                     <div class="row g-9 mb-8">
                         <!--begin::Col-->
-                        <div class="col-md-9 fv-row">
+                        <div class="col-md-6 fv-row">
                             <!--begin::Label-->
                             <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-                                <span class="required">Shop Name</span>
-                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Specify a shop name for future usage and reference"></i>
+                                <span class="required">Saleman Name</span>
+                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Specify a Saleman name for future usage and reference"></i>
                             </label>
                             <!--end::Label-->
-                            <input type="text" class="form-control form-control-solid" placeholder="Enter Shop Name" name="name" id="name" />
+                            <input type="text" class="form-control form-control-solid" placeholder="Enter Saleman Name" name="name" id="name" />
                         </div>
                         <!--end::Col-->
+
                         <!--begin::Col-->
-                        <div class="col-md-3 fv-row">
-                            <!--begin::Image input-->
-                            <div class="image-input image-input-outline" data-kt-image-input="true" style="background-image: url('/assets/media/svg/avatars/blank.svg')">
-                                <!--begin::Preview existing avatar-->
-                                <div class="image-input-wrapper w-125px h-125px" style="background-image: url('/assets/media/avatars/shop_default.png')"></div>
-                                <!--end::Preview existing avatar-->
-                                <!--begin::Label-->
-                                <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change avatar">
-                                    <i class="bi bi-pencil-fill fs-7"></i>
-                                    <!--begin::Inputs-->
-                                    <input type="file" name="avatar" accept=".png, .jpg, .jpeg" />
-                                    <input type="hidden" name="avatar_remove" />
-                                    <!--end::Inputs-->
-                                </label>
-                                <!--end::Label-->
-                                <!--begin::Cancel-->
-                                <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" title="Cancel avatar">
-                                    <i class="bi bi-x fs-2"></i>
-                                </span>
-                                <!--end::Cancel-->
-                                <!--begin::Remove-->
-                                <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" title="Remove avatar">
-                                    <i class="bi bi-x fs-2"></i>
-                                </span>
-                                <!--end::Remove-->
-                            </div>
-                            <!--end::Image input-->
-                            <!--begin::Hint-->
-                            <div class="form-text">Allowed file types: png, jpg, jpeg.</div>
-                            <!--end::Hint-->
+                        <div class="col-md-6 fv-row">
+                            <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+                                <span class="required">Phone</span>
+                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Specify a Saleman phone for future usage and reference"></i>
+                            </label>
+                            <!--end::Label-->
+                            <input type="text" class="form-control form-control-solid" placeholder="Enter Saleman Phone" name="phone" id="phone" />
                         </div>
+                        <!--end::Col-->
                     </div>
                     <!--end::Col-->
                     <!--end::Input group-->
                     <!--begin::Input group-->
                     <div class="row g-9 mb-8">
                         <!--begin::Col-->
-                        <div class="col-md-6 fv-row">
-                            <label class="required fs-6 fw-bold mb-2">Shop Type</label>
-                            <select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Select Shop Type" name="shop_type" id="shop_type">
-                                <option value="">Select shop type...</option>
-                                @foreach($shop_types as $type)
-                                <option value="{{ $type->id }}">{{ $type->title }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <!--end::Col-->
-                        <!--begin::Col-->
-                        <div class="col-md-6 fv-row">
-                            <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-                                <span class="required">Email</span>
-                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Specify a shop email for future usage and reference"></i>
-                            </label>
-                            <!--end::Label-->
-                            <input type="email" class="form-control form-control-solid" placeholder="Enter Shop Email" name="email" id="email"/>
-                        </div>
-                        <!--end::Col-->
-                    </div>
-                    <!--end::Input group-->
-                    <!--begin::Input group-->
-                    <div class="row g-9 mb-8">
-                        <!--begin::Col-->
-                        <div class="col-md-6 fv-row">
-                            <label class="d-flex align-items-center fs-6 fw-bold mb-2">
-                                <span class="required">Phone</span>
-                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Specify a shop phone for future usage and reference"></i>
-                            </label>
-                            <!--end::Label-->
-                            <input type="text" class="form-control form-control-solid" placeholder="Enter Shop Phone" name="phone" id="phone" />
-                        </div>
-                        <!--end::Col-->
-                        <!--begin::Col-->
-                        <div class="col-md-6 fv-row">
+                        <div class="col-md-12 fv-row">
 							<div class="d-flex flex-column mb-8">
 								<label class="fs-6 fw-bold mb-2">Address</label>
-								<textarea class="form-control form-control-solid" rows="3" name="address" placeholder="Type Shop Address" id="address"></textarea>
+								<textarea class="form-control form-control-solid" rows="3" name="address" placeholder="Type Saleman Address" id="address"></textarea>
                             </div>
                         </div>
 						<!--end::Col-->
@@ -177,7 +121,7 @@
                     <!--begin::Input group-->
                     <!--begin::Actions-->
                     <div class="text-center">
-                        <a href="{{ route('shops') }}" class="btn btn-light me-3">Cancel</a>
+                        <a href="{{ route('salemans') }}" class="btn btn-light me-3">Cancel</a>
                         <button type="submit" id="submit" class="btn btn-primary">Submit</button>
                     </div>
                     <!--end::Actions-->
@@ -199,14 +143,6 @@ if ($("#saveForm").length > 0) {
             name: {
             required: true,
             },
-            shop_type: {
-            required: true,
-            },
-            email: {
-            required: true,
-            maxlength: 50,
-            email: true,
-            },
             phone: {
             required: true,
             maxlength: 13,
@@ -221,20 +157,12 @@ if ($("#saveForm").length > 0) {
             required: "Please enter name",
             maxlength: "Shop name maxlength should be 50 characters long."
             },
-            shop_type: {
-            required: "Please select shop type",
-            },
-            email: {
-            required: "Please enter valid email",
-            email: "Please enter valid email",
-            maxlength: "The email should less than or equal to 50 characters",
-            },
             phone: {
             required: "Please enter valid phone number",
             maxlength: "The phone should less than or equal to 13 characters",
             },
             address: {
-            required: "Please select shop type",
+            required: "Please type saleman address",
             maxlength: "Your address maxlength should be 300 characters long",
             },
         },
@@ -247,7 +175,7 @@ if ($("#saveForm").length > 0) {
             $('#submit').html('Please Wait...');
             $("#submit"). attr("disabled", true);
             $.ajax({
-                url: "{{route('shop.save')}}",
+                url: "{{route('saleman.save')}}",
                 type: "POST",
                 data: $('#saveForm').serialize(),
                     success: function( response ) {

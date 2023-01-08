@@ -13,7 +13,7 @@ class SalemanRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,18 @@ class SalemanRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required',
+            'phone' => 'required',
+            'address' => 'required',
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'name' => 'Name',
+            'phone' => 'Phone',
+            'address' => 'Address',
         ];
     }
 }

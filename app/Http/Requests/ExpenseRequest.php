@@ -13,7 +13,7 @@ class ExpenseRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,20 @@ class ExpenseRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required',
+            'amount' => 'required',
+            'paid_by' => 'required',
+            'paid_to' => 'required',
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'name' => 'Name',
+            'amount' => 'Amount',
+            'paid_by' => 'Paid By',
+            'paid_to' => 'Paid To',
         ];
     }
 }

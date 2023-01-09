@@ -245,14 +245,14 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
       * ***************************
       */
 
-      
 
 
 
-      /*****************************
-     * Customers Routes Starts
-     * ***************************
-     */
+
+    /*****************************
+    * Customers Routes Starts
+    * ***************************
+    */
 
     Route::controller(App\Http\Controllers\Admin\CustomerController::class)->group(function () {
         Route::get('/customers', 'index')->name('customers');
@@ -272,16 +272,16 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
  
  
  
-     /*****************************
-      * Customers Routes Ends
-      * ***************************
-      */
+    /*****************************
+    * Customers Routes Ends
+    * ***************************
+    */
 
 
 
 
 
-      /*****************************
+    /*****************************
      * Dealers Routes Starts
      * ***************************
      */
@@ -306,6 +306,37 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
  
      /*****************************
       * Dealers Routes Ends
+      * ***************************
+      */
+
+
+
+
+    /*****************************
+     * Expenses Routes Starts
+     * ***************************
+     */
+
+    Route::controller(App\Http\Controllers\Admin\ExpenseController::class)->group(function () {
+        Route::get('/expenses', 'index')->name('expenses');
+        Route::get('/add-expense', 'add_record')->name('expense.add');
+        Route::post('/save-expense', 'save_record')->name('expense.save');
+        Route::get('/edit-expense/{id}', 'edit_record')->name('expense.edit');
+        Route::put('/update-expense/{id}', 'update_record')->name('expense.update');
+        Route::delete('/delete-expense/{id}', 'delete_record')->name('expense.delete');
+        Route::get('/trashed-expenses', 'trashed_records')->name('expense.trashed');
+        Route::delete('/delete-expense-permanent/{id}', 'delete_record_permanent')->name('expense.delete.permanent');
+        Route::put('/restore-expense/{id}', 'restore_record')->name('expense.restore');
+
+        //Search and filters
+        Route::post('/search-expense', 'search_record')->name('expense.search');
+        Route::post('/expense-status', 'filter_status')->name('expense.status');
+    });
+ 
+ 
+ 
+     /*****************************
+      * Expenses Routes Ends
       * ***************************
       */
 
@@ -350,28 +381,6 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
 
     /*****************************
      * Sales Routes Ends
-     * ***************************
-     */
-
-
-
-
-    /*****************************
-     * Expenses Routes Starts
-     * ***************************
-     */
-
-    Route::get('/expenses', [App\Http\Controllers\ExpenseController::class, 'index'])->name('expenses');
-    Route::get('/add-expense', [App\Http\Controllers\ExpenseController::class, 'add_record'])->name('expense.add');
-    Route::post('/save-expense', [App\Http\Controllers\ExpenseController::class, 'save_record'])->name('expense.save');
-    Route::get('/edit-expense/{id}', [App\Http\Controllers\ExpenseController::class, 'edit_record'])->name('expense.edit');
-    Route::post('/update-expense/{id}', [App\Http\Controllers\ExpenseController::class, 'update_record'])->name('expense.update');
-    Route::get('/delete-expense/{id}', [App\Http\Controllers\ExpenseController::class, 'delete_record'])->name('expense.delete');
-
-
-
-    /*****************************
-     * Expenses Routes Ends
      * ***************************
      */
 

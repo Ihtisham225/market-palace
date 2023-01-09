@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('description');
             $table->string('amount');
             $table->string('paid_by');
-            $table->string('Paid_to');
+            $table->string('paid_to');
             $table->tinyInteger('status')->default('1');
             $table->timestamps();
             $table->softDeletes();

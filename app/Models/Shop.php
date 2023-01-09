@@ -44,4 +44,10 @@ class Shop extends Model
     {
         return $this->hasMany(Dealer::class, 'shop_id');
     }
+
+    //has one to many relationship with expenses table
+    public function expense()
+    {
+        return $this->hasMany(Expense::class, 'shop_id');
+    }
 }

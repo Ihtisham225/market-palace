@@ -156,6 +156,37 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
 
 
     /*****************************
+     * Companies pyaments Routes Starts
+     * ***************************
+     */
+
+    Route::controller(App\Http\Controllers\Admin\CompanyPaymentController::class)->group(function () {
+        Route::get('/company_payments', 'index')->name('company_payments');
+        Route::get('/add-company_payment', 'add_record')->name('company_payment.add');
+        Route::post('/save-company_payment', 'save_record')->name('company_payment.save');
+        Route::get('/edit-company_payment/{id}', 'edit_record')->name('company_payment.edit');
+        Route::put('/update-company_payment/{id}', 'update_record')->name('company_payment.update');
+        Route::delete('/delete-company_payment/{id}', 'delete_record')->name('company_payment.delete');
+        Route::get('/trashed-company_payments', 'trashed_records')->name('company_payment.trashed');
+        Route::delete('/delete-company_payment-permanent/{id}', 'delete_record_permanent')->name('company_payment.delete.permanent');
+        Route::put('/restore-company_payment/{id}', 'restore_record')->name('company_payment.restore');
+
+        //Search and filters
+        Route::post('/search-company_payment', 'search_record')->name('company_payment.search');
+        Route::post('/company_payment-status', 'filter_status')->name('company_payment.status');
+    });
+ 
+ 
+ 
+     /*****************************
+      * Companies payments Routes Ends
+      * ***************************
+      */
+
+
+
+
+    /*****************************
      * Categories Routes Starts
      * ***************************
      */
@@ -254,7 +285,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
     * ***************************
     */
 
-    Route::controller(App\Http\Controllers\Admin\CustomerController::class)->group(function () {
+    Route::controller(App\Http\Controllers\Admin\CustomerPaymentController::class)->group(function () {
         Route::get('/customers', 'index')->name('customers');
         Route::get('/add-customer', 'add_record')->name('customer.add');
         Route::post('/save-customer', 'save_record')->name('customer.save');
@@ -282,6 +313,38 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
 
 
     /*****************************
+    * Customer payments Routes Starts
+    * ***************************
+    */
+
+    Route::controller(App\Http\Controllers\Admin\CustomerController::class)->group(function () {
+        Route::get('/customer_payments', 'index')->name('customer_payments');
+        Route::get('/add-customer_payment', 'add_record')->name('customer_payment.add');
+        Route::post('/save-customer_payment', 'save_record')->name('customer_payment.save');
+        Route::get('/edit-customer_payment/{id}', 'edit_record')->name('customer_payment.edit');
+        Route::put('/update-customer_payment/{id}', 'update_record')->name('customer_payment.update');
+        Route::delete('/delete-customer_payment/{id}', 'delete_record')->name('customer_payment.delete');
+        Route::get('/trashed-customer_payments', 'trashed_records')->name('customer_payment.trashed');
+        Route::delete('/delete-customer_payment-permanent/{id}', 'delete_record_permanent')->name('customer_payment.delete.permanent');
+        Route::put('/restore-customer_payment/{id}', 'restore_record')->name('customer_payment.restore');
+
+        //Search and filters
+        Route::post('/search-customer_payment', 'search_record')->name('customer_payment.search');
+        Route::post('/customer_payment-status', 'filter_status')->name('customer_payment.status');
+    });
+ 
+ 
+ 
+    /*****************************
+    * Customer payments Routes Ends
+    * ***************************
+    */
+
+
+
+
+
+    /*****************************
      * Dealers Routes Starts
      * ***************************
      */
@@ -300,6 +363,38 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
         //Search and filters
         Route::post('/search-dealer', 'search_record')->name('dealer.search');
         Route::post('/dealer-status', 'filter_status')->name('dealer.status');
+    });
+ 
+ 
+ 
+     /*****************************
+      * Dealers Routes Ends
+      * ***************************
+      */
+
+
+
+
+
+    /*****************************
+     * Dealers Payments Routes Starts
+     * ***************************
+     */
+
+    Route::controller(App\Http\Controllers\Admin\DealerPaymentController::class)->group(function () {
+        Route::get('/dealer_payments', 'index')->name('dealer_payments');
+        Route::get('/add-dealer_payment', 'add_record')->name('dealer_payment.add');
+        Route::post('/save-dealer_payment', 'save_record')->name('dealer_payment.save');
+        Route::get('/edit-dealer_payment/{id}', 'edit_record')->name('dealer_payment.edit');
+        Route::put('/update-dealer_payment/{id}', 'update_record')->name('dealer_payment.update');
+        Route::delete('/delete-dealer_payment/{id}', 'delete_record')->name('dealer_payment.delete');
+        Route::get('/trashed-dealer_payments', 'trashed_records')->name('dealer_payment.trashed');
+        Route::delete('/delete-dealer_payment-permanent/{id}', 'delete_record_permanent')->name('dealer_payment.delete.permanent');
+        Route::put('/restore-dealer_payment/{id}', 'restore_record')->name('dealer_payment.restore');
+
+        //Search and filters
+        Route::post('/search-dealer_payment', 'search_record')->name('dealer_payment.search');
+        Route::post('/dealer_payment-status', 'filter_status')->name('dealer_payment.status');
     });
  
  

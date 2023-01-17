@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('expenses', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('shop_id')->constrained('shops')->nullable();
             $table->string('title');
             $table->string('description');
             $table->string('amount');

@@ -13,14 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('customers', function (Blueprint $table) {
+        Schema::create('company_payments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('shop_id')->constrained('shops')->nullable();
-            $table->string('name');
-            $table->string('phone')->nullable();
-            $table->string('address')->nullable();
-            $table->string('dues')->nullable();
-            $table->string('business_type')->nullable(); //whole sale dealer or retrailer
+            $table->foreignId('company_id')->constrained('companies')->nullable();
+            $table->string('balance');
+            $table->string('payment');
             $table->tinyInteger('status')->default('1');
             $table->timestamps();
             $table->softDeletes();
@@ -34,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('customers');
+        Schema::dropIfExists('company_payments');
     }
 };

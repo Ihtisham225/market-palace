@@ -16,4 +16,12 @@ class Company extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+
+
+    //has one to many relationship with company_payments table
+    public function company_payment()
+    {
+        return $this->hasMany(CompanyPayment::class, 'company_id');
+    }
 }

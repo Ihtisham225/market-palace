@@ -1763,9 +1763,8 @@
                         <!--begin::Wrapper-->
                         <div class="d-flex flex-stack">
                             <div class="d-flex gap-2">
-                                <a class="btn btn-sm btn-light-primary fw-bolder" href="../../demo20/dist/documentation/base/forms/controls.html">Controls</a>
-                                <a class="btn btn-sm btn-light-success fw-bolder" href="../../demo20/dist/documentation/base/forms/advanced.html">Advanced</a>
-                                <a class="btn btn-sm btn-light-danger fw-bolder" href="../../demo20/dist/documentation/base/forms/floating-labels.html">Floating Labels</a>
+                                <a class="btn btn-sm btn-light-primary fw-bolder" href="{{ route('customer_payments') }}">Customers Payments</a>
+                                <a class="btn btn-sm btn-light-success fw-bolder" href="{{ route('company_payments') }}">Companies Payments</a>
                             </div>
                             <div class="d-flex gap-2">
                                 <a class="btn btn-sm btn-light-info fw-bolder" href="../../demo20/dist/documentation/forms/autosize.html">More Components</a>

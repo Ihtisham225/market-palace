@@ -18,4 +18,12 @@ class Dealer extends Model
     {
         return $this->belongsTo(Shop::class, 'shop_id');
     }
+
+
+
+    //has one to many relationship with dealer payments table
+    public function dealer_payments()
+    {
+        return $this->hasMany(DealerPayment::class, 'dealer_id');
+    }
 }

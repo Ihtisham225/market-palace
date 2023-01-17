@@ -18,4 +18,12 @@ class Customer extends Model
     {
         return $this->belongsTo(Shop::class, 'shop_id');
     }
+
+
+
+    //has one to many relationship with customer_payments table
+    public function customer_payment()
+    {
+        return $this->hasMany(CustomerPayment::class, 'customer_id');
+    }
 }
